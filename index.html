@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discern — Early Access</title>
-  <meta name="description" content="A somatic check-in tool for leaders. Know whether you're deciding from clarity or reactivity — before the decision is made.">
+  <title>Regulate — Early Access</title>
+  <meta name="description" content="An emotional regulation and body intelligence app. Stay grounded under pressure, make clearer decisions, and learn to lead from the inside out.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -50,9 +50,11 @@
     }
     .nav-wordmark {
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: -0.3px;
-      color: var(--text);
+      background: linear-gradient(135deg, var(--accent), var(--calm));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .nav-cta {
       background: var(--accent);
@@ -176,9 +178,17 @@
       border-radius: 20px;
       padding: 20px 32px;
       margin-top: 64px;
-      max-width: 520px;
+      max-width: 560px;
     }
     .bio-item { text-align: center; }
+    .bio-sublabel {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
     .bio-value {
       font-size: 28px;
       font-weight: 700;
@@ -189,7 +199,14 @@
     .bio-label { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
     .bio-divider { width: 1px; height: 40px; background: var(--border); }
     .bio-state { display: flex; align-items: center; gap: 8px; }
-    .bio-state-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--calm); box-shadow: 0 0 8px var(--calm); }
+    .bio-state-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--calm);
+      box-shadow: 0 0 8px var(--calm);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
     .bio-state-label { font-size: 14px; font-weight: 500; color: var(--calm); }
 
     /* ── SECTION SHARED ── */
@@ -243,31 +260,11 @@
     .problem-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
     .problem-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-    /* ── PRODUCTS ── */
-    .products-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 80px;
-      margin-top: 60px;
-    }
-    .product-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    .product-row.reverse { direction: rtl; }
-    .product-row.reverse > * { direction: ltr; }
-    @media (max-width: 580px) {
-      .product-row, .product-row.reverse { grid-template-columns: 1fr; direction: ltr; }
-      .product-row.reverse > * { direction: ltr; }
-    }
-
-    /* Phone mockup */
+    /* ── PHONE MOCKUP ── */
     .phone-frame {
       position: relative;
       width: 100%;
-      max-width: 280px;
+      max-width: 260px;
       margin: 0 auto;
       aspect-ratio: 9/19;
       background: #0a0a0f;
@@ -285,72 +282,81 @@
       position: relative;
       background: #0a0a0f;
     }
-    /* Regulate mockup screen */
-    .mock-regulate {
-      padding: 20px 16px 12px;
+
+    /* Regulate home mockup */
+    .mock-regulate-home {
+      padding: 18px 14px 14px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 9px;
       height: 100%;
     }
-    .mock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .mock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
     .mock-back { font-size: 9px; color: #8888a0; }
     .mock-logo-r { font-size: 13px; font-weight: 700; background: linear-gradient(135deg,#6c5ce7,#00b894); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .mock-logo-d { font-size: 13px; font-weight: 700; background: linear-gradient(135deg,#d4a855,#e8c87a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .mock-h1 { font-size: 16px; font-weight: 700; color: #e8e8f0; line-height: 1.2; }
-    .mock-sub { font-size: 9px; color: #7878a0; }
-    .mock-bio {
-      display: flex;
-      align-items: center;
-      background: #14141f;
-      border: 1px solid #252535;
-      border-radius: 10px;
-      padding: 10px 12px;
-      gap: 0;
-    }
-    .mock-bio-item { flex: 1; text-align: center; }
-    .mock-bio-val { font-size: 14px; font-weight: 700; color: #e8e8f0; line-height: 1; }
-    .mock-bio-val span { font-size: 7px; color: #7878a0; }
-    .mock-bio-lab { font-size: 7px; color: #7878a0; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
-    .mock-bio-div { width: 1px; height: 22px; background: #252535; margin: 0 2px; }
-    .mock-bio-state { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; }
-    .mock-bio-dot { width: 5px; height: 5px; border-radius: 50%; background: #00b894; box-shadow: 0 0 4px #00b894; }
-    .mock-bio-statelabel { font-size: 9px; font-weight: 500; color: #00b894; }
-    .mock-card {
+    .mock-h1 { font-size: 15px; font-weight: 700; color: #e8e8f0; line-height: 1.2; }
+    .mock-sub { font-size: 8px; color: #7878a0; line-height: 1.4; }
+    .mock-mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .mock-mode-card {
       background: #14141f;
       border: 1px solid #252535;
       border-radius: 12px;
-      padding: 12px;
+      padding: 12px 10px;
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
     }
-    .mock-card-icon {
+    .mock-mode-card.r { border-color: rgba(108,92,231,0.3); }
+    .mock-mode-card.d { border-color: rgba(212,168,85,0.3); }
+    .mock-mode-icon {
       width: 28px; height: 28px;
       border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mock-mode-icon.r { background: rgba(108,92,231,0.15); }
+    .mock-mode-icon.d { background: rgba(212,168,85,0.15); }
+    .mock-mode-title { font-size: 10px; font-weight: 700; color: #e8e8f0; }
+    .mock-mode-desc { font-size: 7px; color: #7878a0; line-height: 1.35; }
+    .mock-bio-compact {
+      background: #14141f;
+      border: 1px solid #252535;
+      border-radius: 10px;
+      padding: 9px 11px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      gap: 0;
     }
-    .mock-card-icon.r { background: rgba(108,92,231,0.15); }
-    .mock-card-icon.g { background: rgba(0,184,148,0.15); }
-    .mock-card-title { font-size: 11px; font-weight: 600; color: #e8e8f0; margin-bottom: 2px; }
-    .mock-card-desc { font-size: 8px; color: #7878a0; line-height: 1.4; }
+    .mock-bio-block { flex: 1; }
+    .mock-bio-sublabel { font-size: 7px; font-weight: 700; color: #7878a0; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px; }
+    .mock-bio-val { font-size: 13px; font-weight: 700; color: #e8e8f0; line-height: 1; display: flex; align-items: center; gap: 3px; }
+    .mock-bio-val span { font-size: 7px; color: #7878a0; font-weight: 400; }
+    .mock-bio-divv { width: 1px; height: 26px; background: #252535; margin: 0 10px; }
+    .mock-live-dot { width: 5px; height: 5px; border-radius: 50%; background: #00b894; display: inline-block; }
+    .mock-bio-state-wrap { display: flex; align-items: center; gap: 5px; }
+    .mock-bio-state-dot { width: 5px; height: 5px; border-radius: 50%; background: #00b894; }
+    .mock-bio-state-label { font-size: 9px; font-weight: 500; color: #00b894; }
     .mock-adventure {
       text-align: center;
-      font-size: 9px;
+      font-size: 8px;
       color: #7878a0;
       border: 1px solid #252535;
       border-radius: 100px;
-      padding: 6px 12px;
-      margin: 2px auto;
+      padding: 5px 10px;
       display: inline-block;
       width: 100%;
     }
 
-    /* Discern mockup */
-    .mock-discern { padding: 20px 16px 12px; display: flex; flex-direction: column; gap: 10px; height: 100%; }
+    /* Discern signal mockup */
+    .mock-discern-signal {
+      padding: 18px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      height: 100%;
+    }
     .mock-scan-title { font-size: 13px; font-weight: 700; color: #e8e8f0; line-height: 1.3; }
     .mock-scan-sub { font-size: 8px; color: #7878a0; }
     .mock-section-label { font-size: 7px; font-weight: 600; color: #7878a0; text-transform: uppercase; letter-spacing: 0.8px; }
@@ -359,79 +365,97 @@
       background: #14141f;
       border: 1px solid #252535;
       border-radius: 10px;
-      padding: 12px 8px;
+      padding: 10px 8px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
-    .mock-signal-card.selected-expansion { border-color: #00b894; background: rgba(0,184,148,0.08); }
+    .mock-signal-card.selected { border-color: #00b894; background: rgba(0,184,148,0.08); }
     .mock-signal-name { font-size: 9px; font-weight: 600; color: #e8e8f0; }
     .mock-signal-desc { font-size: 7px; color: #7878a0; }
     .mock-btn {
       background: linear-gradient(135deg, #b8942a, #d4a855);
       border-radius: 10px;
-      padding: 11px;
+      padding: 10px;
       text-align: center;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 600;
       color: white;
       margin-top: auto;
     }
-    .product-card {
-      border-radius: 24px;
-      padding: 36px 32px;
+
+    /* ── MODES SECTION ── */
+    .modes-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    @media (max-width: 720px) {
+      .modes-layout { grid-template-columns: 1fr; }
+    }
+    .modes-phones {
+      display: flex;
+      justify-content: center;
+    }
+    .modes-phones .phone-frame {
+      max-width: 260px;
+      width: 100%;
+    }
+    .modes-detail { display: flex; flex-direction: column; gap: 28px; }
+    .mode-block {
+      border-radius: 18px;
+      padding: 24px;
       border: 1px solid transparent;
-      position: relative;
-      overflow: hidden;
-      align-self: center;
     }
-    .product-regulate {
-      background: linear-gradient(135deg, rgba(108,92,231,0.06), rgba(0,184,148,0.04));
-      border-color: rgba(108,92,231,0.25);
+    .mode-block.regulate {
+      background: rgba(108,92,231,0.06);
+      border-color: rgba(108,92,231,0.2);
     }
-    .product-discern {
-      background: linear-gradient(135deg, rgba(212,168,85,0.06), rgba(108,92,231,0.04));
-      border-color: rgba(212,168,85,0.25);
+    .mode-block.discern {
+      background: rgba(212,168,85,0.06);
+      border-color: rgba(212,168,85,0.2);
     }
-    .product-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
+    .mode-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
-    .product-regulate .product-label { color: var(--accent); }
-    .product-discern .product-label { color: var(--gold); }
-    .product-card h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; }
-    .product-regulate h3 {
+    .mode-block.regulate .mode-tag { color: var(--accent); }
+    .mode-block.discern .mode-tag { color: var(--gold); }
+    .mode-block h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .mode-block.regulate h3 {
       background: linear-gradient(135deg, var(--accent), var(--calm));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .product-discern h3 {
+    .mode-block.discern h3 {
       background: linear-gradient(135deg, var(--gold), #e8c87a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .product-card p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
-    .product-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .product-features li {
+    .mode-block p { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .mode-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .mode-features li {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
+      gap: 8px;
+      font-size: 13px;
       color: var(--muted);
     }
-    .feature-dot {
-      width: 6px; height: 6px;
+    .feat-dot {
+      width: 5px; height: 5px;
       border-radius: 50%;
-      margin-top: 6px;
+      margin-top: 7px;
       flex-shrink: 0;
     }
-    .product-regulate .feature-dot { background: var(--accent); }
-    .product-discern .feature-dot { background: var(--gold); }
+    .mode-block.regulate .feat-dot { background: var(--accent); }
+    .mode-block.discern .feat-dot { background: var(--gold); }
 
     /* ── HOW IT WORKS ── */
     .how { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -457,7 +481,7 @@
       border-radius: 2px;
     }
 
-    /* ── SOCIAL PROOF ── */
+    /* ── QUOTES ── */
     .quotes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -539,11 +563,7 @@
     }
     .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
     .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-    .form-note {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
+    .form-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
     .form-success {
       display: none;
       background: rgba(0,184,148,0.1);
@@ -583,7 +603,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-wordmark">discern</div>
+    <div class="nav-wordmark">regulate</div>
     <a href="#waitlist" class="nav-cta">Join waitlist</a>
   </nav>
 
@@ -591,23 +611,23 @@
   <section class="hero">
     <div class="hero-badge">
       <div class="badge-dot"></div>
-      Early access · Leaders &amp; coaches
+      Early access · Leaders &amp; individuals
     </div>
-    <h1>Your body knows<br>before you decide.<br><em>Start listening.</em></h1>
-    <p class="hero-sub">A somatic check-in tool for leaders. Know whether you're deciding from clarity or reactivity — before the decision is made.</p>
+    <h1>Your body knows<br>before your mind<br>catches up.<br><em>Start listening.</em></h1>
+    <p class="hero-sub">Regulate is a body intelligence app. Understand what's happening inside you — and use it to stay grounded, make clearer decisions, and lead from a steadier place.</p>
     <div class="hero-actions">
       <a href="#waitlist" class="btn-primary">Join the waitlist</a>
-      <a href="#products" class="btn-secondary">See what we're building</a>
+      <a href="#modes" class="btn-secondary">See what's inside</a>
     </div>
     <div class="bio-strip">
       <div class="bio-item">
-        <div class="bio-value">42<span>ms</span></div>
-        <div class="bio-label">HRV</div>
+        <div class="bio-sublabel">Today's capacity</div>
+        <div class="bio-value" id="hrv-display">42<span>ms HRV</span></div>
       </div>
       <div class="bio-divider"></div>
       <div class="bio-item">
+        <div class="bio-sublabel">Live</div>
         <div class="bio-value">72<span>bpm</span></div>
-        <div class="bio-label">Heart rate</div>
       </div>
       <div class="bio-divider"></div>
       <div class="bio-state">
@@ -620,107 +640,122 @@
   <!-- PROBLEM -->
   <section class="problem">
     <div class="container">
-      <div class="section-tag">The leadership gap</div>
-      <h2 class="section-title">The data is there.<br>The body signal is missing.</h2>
-      <p class="section-body">Wearables collect thousands of data points a day. But nothing connects that data to the moment before a high-stakes decision — when your nervous system already knows something your thinking mind hasn't caught up with.</p>
+      <div class="section-tag">Why this matters</div>
+      <h2 class="section-title">You can't think<br>your way to clarity.</h2>
+      <p class="section-body">The body responds before the mind catches up. When you're under pressure, activated, or in protection mode — the quality of everything you think, say, and decide changes. Most people never notice.</p>
       <div class="problem-grid">
         <div class="problem-card fade-in">
           <div class="problem-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               <path d="M11 4v14M4 11h14" stroke="#7878a0" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <h3>Biometrics without context</h3>
-          <p>Your HRV drops before a difficult conversation. Your heart rate spikes when you think about a decision. The data is there — but nothing translates it into action.</p>
+          <h3>Biometrics without meaning</h3>
+          <p>Wearables give you numbers. But nothing connects those numbers to how you're actually showing up — in a conversation, a decision, a moment that matters.</p>
         </div>
         <div class="problem-card fade-in">
           <div class="problem-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               <circle cx="11" cy="11" r="7" stroke="#7878a0" stroke-width="1.5"/>
               <path d="M11 8v3.5l2.5 2.5" stroke="#7878a0" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <h3>Reactivity in the moment</h3>
-          <p>Most poor decisions and emotional responses happen when the nervous system is dysregulated — not because of bad judgment, but because the body is in protection mode.</p>
+          <h3>Reactivity you don't see coming</h3>
+          <p>Most poor decisions happen when the body is under strain — not because of bad judgment, but because we're in protection mode and don't realise it.</p>
         </div>
         <div class="problem-card fade-in">
           <div class="problem-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               <path d="M6 11l3.5 3.5L16 8" stroke="#7878a0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="11" cy="11" r="8" stroke="#7878a0" stroke-width="1.5"/>
             </svg>
           </div>
           <h3>Resilience that doesn't stick</h3>
-          <p>Meditation apps build habits. Therapy builds insight. But neither gives you a live signal in the moment when your capacity to feel and respond is actually being tested.</p>
+          <p>Meditation builds habits. Therapy builds insight. Neither gives you a live signal in the moment when your capacity to stay present is actually being tested.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCTS -->
-  <section id="products">
+  <!-- MODES -->
+  <section id="modes">
     <div class="container">
-      <div class="section-tag">What we're building</div>
-      <h2 class="section-title">A body check-in<br>before every big call.</h2>
-      <p class="section-body">Discern gives you a somatic read before high-stakes decisions. Built on polarity awareness and nervous system science — not another journaling app.</p>
+      <div class="section-tag">What's inside</div>
+      <h2 class="section-title">Two modes.<br>One practice.</h2>
+      <p class="section-body">Regulate has two entry points depending on what you need. Both build the same core skill — knowing what's happening in your body and working with it, not against it.</p>
 
-      <div style="display:flex; flex-direction:column; align-items:center; gap:48px; margin-top:60px;">
+      <div class="modes-layout fade-in">
 
-        <!-- Discern phone mockup centred -->
-        <div class="phone-frame fade-in" style="max-width:300px;">
-          <div class="phone-screen">
-            <div class="mock-discern">
-              <div class="mock-header">
-                <span class="mock-back">← Back</span>
-                <span class="mock-logo-d">discern</span>
+        <!-- Two phone mockups -->
+        <div class="modes-phones">
+          <!-- Phone 1: Regulate home -->
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="mock-regulate-home">
+                <div class="mock-header">
+                  <span class="mock-back"></span>
+                  <span class="mock-logo-r">regulate</span>
+                  <span style="font-size:8px;color:#7878a0;">v0.2</span>
+                </div>
+                <div class="mock-h1">What do you need right now?</div>
+                <div class="mock-sub">Choose your path. Both build the same skill — staying grounded when it matters.</div>
+                <div class="mock-mode-grid">
+                  <div class="mock-mode-card r">
+                    <div class="mock-mode-icon r">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 11C3 11 5 7 8 7C11 7 13 11 13 11" stroke="#6c5ce7" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="9" r="2" fill="#6c5ce7" opacity="0.5"/></svg>
+                    </div>
+                    <div class="mock-mode-title">Regulate</div>
+                    <div class="mock-mode-desc">Explore emotions, stay steady</div>
+                  </div>
+                  <div class="mock-mode-card d">
+                    <div class="mock-mode-icon d">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5" stroke="#d4a855" stroke-width="1.2"/><path d="M8 4L8 8L11 10" stroke="#d4a855" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="mock-mode-title">Discern</div>
+                    <div class="mock-mode-desc">Body check-in before a decision</div>
+                  </div>
+                </div>
+                <div class="mock-bio-compact">
+                  <div class="mock-bio-block">
+                    <div class="mock-bio-sublabel">Today's capacity</div>
+                    <div class="mock-bio-val">42<span> ms HRV</span></div>
+                  </div>
+                  <div class="mock-bio-divv"></div>
+                  <div class="mock-bio-block">
+                    <div class="mock-bio-sublabel">Live</div>
+                    <div class="mock-bio-val"><span class="mock-live-dot"></span>&nbsp;72<span> bpm</span></div>
+                  </div>
+                </div>
+                <div class="mock-adventure">Take me where I need to go</div>
               </div>
-              <div class="mock-scan-title">Think about this decision. Then pause and scan.</div>
-              <div class="mock-scan-sub">As you hold it in mind, notice what shifts in your body.</div>
-              <div class="mock-section-label">What's your body saying?</div>
-              <div class="mock-signal-grid">
-                <div class="mock-signal-card selected-expansion">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 20L20 8M20 8H12M20 8V16" stroke="#00b894" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <div class="mock-signal-name">Expansion</div>
-                  <div class="mock-signal-desc">Opening, energy, leaning in</div>
-                </div>
-                <div class="mock-signal-card">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M20 8L8 20M8 20H16M8 20V12" stroke="#e17055" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <div class="mock-signal-name">Contraction</div>
-                  <div class="mock-signal-desc">Tightening, pulling back</div>
-                </div>
-                <div class="mock-signal-card">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="7" stroke="#8888a0" stroke-width="1.8"/><circle cx="14" cy="14" r="2" fill="#8888a0"/></svg>
-                  <div class="mock-signal-name">Stillness</div>
-                  <div class="mock-signal-desc">Quiet, grounded, neutral</div>
-                </div>
-                <div class="mock-signal-card">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 6v6l4 4" stroke="#d4a855" stroke-width="1.8" stroke-linecap="round"/><path d="M9 19l2-3M19 19l-2-3" stroke="#d4a855" stroke-width="1.5" stroke-linecap="round"/></svg>
-                  <div class="mock-signal-name">Agitation</div>
-                  <div class="mock-signal-desc">Restless, scattered, urgent</div>
-                </div>
-              </div>
-              <div class="mock-btn">Center before deciding</div>
             </div>
           </div>
+
         </div>
 
-        <!-- 2x2 feature grid -->
-        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:20px; max-width:680px; width:100%;" class="fade-in">
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px;">
-            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">Somatic check-in</div>
-            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Know if you're expanded or contracted before you commit</div>
+        <!-- Mode descriptions -->
+        <div class="modes-detail">
+          <div class="mode-block regulate">
+            <div class="mode-tag">Regulate mode</div>
+            <h3>Work with what's present</h3>
+            <p>Something's in the way — procrastination, overwhelm, a difficult conversation. Or something's here to be felt — grief, joy, longing. Name it, locate it in the body, and work with it through breathwork and inquiry.</p>
+            <ul class="mode-features">
+              <li><span class="feat-dot"></span>Emotion and challenge check-in</li>
+              <li><span class="feat-dot"></span>Body location and intensity mapping</li>
+              <li><span class="feat-dot"></span>Breathwork calibrated to your state</li>
+              <li><span class="feat-dot"></span>Guided reflection and insight</li>
+            </ul>
           </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px;">
-            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">Polarity awareness</div>
-            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Is this a decision or an ongoing tension to navigate?</div>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px;">
-            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">Decision journal</div>
-            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Track body signal alongside outcome — find your patterns</div>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px;">
-            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">Wearable integration</div>
-            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Live HRV and heart rate from Oura, Whoop, Apple Watch</div>
+          <div class="mode-block discern">
+            <div class="mode-tag">Discern mode — for leaders</div>
+            <h3>Lead from clarity, not reactivity</h3>
+            <p>Before a high-stakes decision or a difficult conversation, check in with your body first. Know whether you're deciding from a clear place — or from pressure, fear, or protection mode.</p>
+            <ul class="mode-features">
+              <li><span class="feat-dot"></span>Body check-in before a decision</li>
+              <li><span class="feat-dot"></span>Polarity mapping for ongoing tensions</li>
+              <li><span class="feat-dot"></span>Decision journal with outcome tracking</li>
+              <li><span class="feat-dot"></span>Live wearable context (Oura, Apple Watch, Whoop)</li>
+            </ul>
           </div>
         </div>
 
@@ -733,31 +768,31 @@
     <div class="container">
       <div class="section-tag">How it works</div>
       <h2 class="section-title">Not another<br>mindfulness timer.</h2>
-      <p class="section-body">We use your wearable's data — HRV, heart rate, respiratory rate — as a real-time signal, not a retrospective score. The practice happens in the moment when it counts.</p>
+      <p class="section-body">We use your wearable's data — HRV as context, heart rate as a live signal — to show you what's happening in your body right now. The practice happens in the moment when it counts.</p>
       <div class="steps">
         <div class="step fade-in">
           <div class="step-line"></div>
           <div class="step-number">01</div>
-          <h3>Your body sends a signal</h3>
-          <p>Your wearable notices a shift — HRV drop, elevated heart rate, change in respiration. Or you notice something yourself: a tightness, a heaviness, a decision looming.</p>
+          <h3>Something shows up</h3>
+          <p>A tightness, a heaviness, a decision looming. Your wearable notices a shift — or you do. Either way, you open the app at the moment it actually matters.</p>
         </div>
         <div class="step fade-in">
           <div class="step-line"></div>
           <div class="step-number">02</div>
           <h3>Name what's present</h3>
-          <p>What's in the way, or what's here to be felt? Where do you feel it in your body? The app translates sensation into language — without requiring you to have it figured out first.</p>
+          <p>What's in the way, or what's here to be felt? Where do you feel it? The app translates body sensation into language — without needing you to have it figured out first.</p>
         </div>
         <div class="step fade-in">
           <div class="step-line"></div>
           <div class="step-number">03</div>
           <h3>Work with it, not against it</h3>
-          <p>Regulation or inquiry — depending on what you need. Breathwork calibrated to your current state. Reflection prompts grounded in what your body reported.</p>
+          <p>Breathwork, inquiry, or a body check-in before a decision — depending on what you need. No generic sessions. The practice is built around what your body just reported.</p>
         </div>
         <div class="step fade-in">
           <div class="step-line"></div>
           <div class="step-number">04</div>
-          <h3>Build the pattern over time</h3>
-          <p>Sessions accumulate into a picture of your nervous system — what triggers you, what resources you, and whether your body signals have been a reliable guide to your decisions.</p>
+          <h3>Build the picture over time</h3>
+          <p>Sessions accumulate into a picture of your patterns — what activates you, what grounds you, and whether your body has been a reliable guide to your decisions.</p>
         </div>
       </div>
     </div>
@@ -790,7 +825,7 @@
     <div class="container">
       <div class="section-tag">Join the waitlist</div>
       <h2 class="section-title">Be first to know<br>when we launch.</h2>
-      <p class="section-body">We're inviting a small group of early users to shape both products before public release. If this resonates, we'd love to hear from you.</p>
+      <p class="section-body">We're inviting a small group of early users — leaders, coaches, and individuals — to shape the product before public release. If this resonates, we'd love to hear from you.</p>
 
       <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/xlgyojrb" method="POST">
         <div class="form-row">
@@ -800,9 +835,10 @@
         <input class="form-input" type="email" name="email" placeholder="Email address" required>
         <select class="form-select" name="interest" required>
           <option value="" disabled selected>I'm most interested in...</option>
-          <option value="leader">I lead a team or organisation</option>
+          <option value="leader">Leading a team — I want the Discern mode</option>
           <option value="coach">I'm an executive coach or consultant</option>
-          <option value="regulate">I'm interested in the personal version (Regulate)</option>
+          <option value="personal">Personal regulation — staying grounded under pressure</option>
+          <option value="both">Both — I want everything</option>
         </select>
         <select class="form-select" name="wearable">
           <option value="" disabled selected>Wearable (optional)</option>
@@ -813,21 +849,21 @@
           <option value="none">I don't use one yet</option>
           <option value="other">Other</option>
         </select>
-        <input type="hidden" name="_subject" value="New waitlist signup">
+        <input type="hidden" name="_subject" value="New Regulate waitlist signup">
         <button type="submit" class="form-submit" id="form-submit">Request early access</button>
         <p class="form-note">No spam, ever. We'll reach out personally when we're ready for early users.</p>
       </form>
 
       <div class="form-success" id="form-success">
         <h3>You're on the list.</h3>
-        <p>Thank you — we'll be in touch personally before we open up access. In the meantime, if you want to share feedback or ask questions, reply to our confirmation email.</p>
+        <p>Thank you — we'll be in touch personally before we open up access. If you want to share feedback or ask questions in the meantime, reply to our confirmation email.</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Built by a coach, for people who want to lead from the inside out. &copy; 2025 Philipp Brady.</p>
+    <p>Built by a coach, for people who want to lead from the inside out. &copy; 2026 Philipp Brady.</p>
   </footer>
 
   <script>
@@ -846,7 +882,6 @@
       e.preventDefault();
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
-
       try {
         const res = await fetch(form.action, {
           method: 'POST',
@@ -872,8 +907,8 @@
     let hrv = 42;
     setInterval(() => {
       hrv = 38 + Math.floor(Math.random() * 10);
-      const el = document.querySelector('.bio-value');
-      if (el) el.innerHTML = `${hrv}<span>ms</span>`;
+      const el = document.getElementById('hrv-display');
+      if (el) el.innerHTML = `${hrv}<span>ms HRV</span>`;
     }, 3000);
   </script>
 </body>
