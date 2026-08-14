@@ -583,6 +583,27 @@
     }
     footer p { font-size: 13px; color: var(--muted); }
 
+    /* ── VIDEO ── */
+    .video-section {
+      padding: 0 24px 100px;
+    }
+    .video-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: 0 0 60px rgba(108,92,231,0.12);
+    }
+    .video-wrap iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
@@ -634,6 +655,18 @@
         <div class="bio-state-dot"></div>
         <div class="bio-state-label">Regulated</div>
       </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="video-wrap fade-in">
+      <iframe
+        src="https://www.youtube.com/embed/DLH1zOyc41g?rel=0&modestbranding=1&color=white"
+        title="Regulate — see it in action"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
   </section>
 
