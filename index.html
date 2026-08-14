@@ -597,12 +597,37 @@
       background: var(--surface);
       box-shadow: 0 0 60px rgba(108,92,231,0.12);
     }
-    .video-wrap iframe {
+    .video-thumb {
       display: block;
       width: 100%;
       aspect-ratio: 16 / 9;
-      border: none;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
     }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      transition: background 0.2s;
+    }
+    .video-thumb:hover .video-play-btn { background: rgba(0,0,0,0.45); }
+    .video-play-btn svg {
+      width: 72px;
+      height: 72px;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5));
+      transition: transform 0.2s;
+    }
+    .video-thumb:hover .video-play-btn svg { transform: scale(1.08); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -661,12 +686,16 @@
   <!-- VIDEO -->
   <section class="video-section">
     <div class="video-wrap fade-in">
-      <iframe
-        src="https://www.youtube.com/embed/DLH1zOyc41g?rel=0&modestbranding=1&color=white"
-        title="Regulate — see it in action"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=DLH1zOyc41g" target="_blank" rel="noopener" aria-label="Watch Regulate in action on YouTube">
+        <img src="https://img.youtube.com/vi/DLH1zOyc41g/maxresdefault.jpg" alt="Regulate app preview" />
+        <div class="video-play-btn">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="36" fill="white" fill-opacity="0.15"/>
+            <circle cx="36" cy="36" r="34" stroke="white" stroke-opacity="0.4" stroke-width="1.5"/>
+            <polygon points="29,22 54,36 29,50" fill="white"/>
+          </svg>
+        </div>
+      </a>
     </div>
   </section>
 
