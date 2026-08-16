@@ -629,6 +629,46 @@
     }
     .video-thumb:hover .video-play-btn svg { transform: scale(1.08); }
 
+    /* ── VIDEO LIGHTBOX ── */
+    .video-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .video-lightbox.open { display: flex; }
+    .video-lightbox-inner {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 80px rgba(108,92,231,0.3);
+    }
+    .video-lightbox-inner iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-lightbox-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    .video-lightbox-close:hover { opacity: 1; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
@@ -686,7 +726,7 @@
   <!-- VIDEO -->
   <section class="video-section">
     <div class="video-wrap fade-in">
-      <a class="video-thumb" href="https://www.youtube.com/watch?v=DLH1zOyc41g" target="_blank" rel="noopener" aria-label="Watch Regulate in action on YouTube">
+      <a class="video-thumb" href="#" onclick="openVideoLightbox(event)" aria-label="Watch Regulate in action">
         <img src="https://img.youtube.com/vi/DLH1zOyc41g/maxresdefault.jpg" alt="Regulate app preview" />
         <div class="video-play-btn">
           <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -996,6 +1036,32 @@
       const el = document.getElementById('hrv-display');
       if (el) el.innerHTML = `${hrv}<span>ms HRV</span>`;
     }, 3000);
+  </script>
+
+  <!-- VIDEO LIGHTBOX -->
+  <div class="video-lightbox" id="videoLightbox" onclick="closeVideoLightbox(event)">
+    <div class="video-lightbox-inner">
+      <button class="video-lightbox-close" onclick="closeVideoLightbox()">&times;</button>
+      <iframe id="videoFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function openVideoLightbox(e) {
+      e.preventDefault();
+      document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/DLH1zOyc41g?autoplay=1&rel=0&modestbranding=1';
+      document.getElementById('videoLightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideoLightbox(e) {
+      if (e && e.target !== document.getElementById('videoLightbox') && !e.target.classList.contains('video-lightbox-close')) return;
+      document.getElementById('videoFrame').src = '';
+      document.getElementById('videoLightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeVideoLightbox({target: document.getElementById('videoLightbox')});
+    });
   </script>
 </body>
 </html>
