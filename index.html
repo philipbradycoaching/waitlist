@@ -597,77 +597,13 @@
       background: var(--surface);
       box-shadow: 0 0 60px rgba(108,92,231,0.12);
     }
-    .video-thumb {
+    .hero-video {
       display: block;
       width: 100%;
-      aspect-ratio: 16 / 9;
-      position: relative;
-      cursor: pointer;
-      text-decoration: none;
+      border-radius: 20px;
+      outline: none;
     }
-    .video-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .video-play-btn {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.3);
-      transition: background 0.2s;
-    }
-    .video-thumb:hover .video-play-btn { background: rgba(0,0,0,0.45); }
-    .video-play-btn svg {
-      width: 72px;
-      height: 72px;
-      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5));
-      transition: transform 0.2s;
-    }
-    .video-thumb:hover .video-play-btn svg { transform: scale(1.08); }
 
-    /* ── VIDEO LIGHTBOX ── */
-    .video-lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .video-lightbox.open { display: flex; }
-    .video-lightbox-inner {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      aspect-ratio: 16/9;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 0 80px rgba(108,92,231,0.3);
-    }
-    .video-lightbox-inner iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .video-lightbox-close {
-      position: absolute;
-      top: -44px;
-      right: 0;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 32px;
-      cursor: pointer;
-      line-height: 1;
-      opacity: 0.7;
-    }
-    .video-lightbox-close:hover { opacity: 1; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -726,16 +662,9 @@
   <!-- VIDEO -->
   <section class="video-section">
     <div class="video-wrap fade-in">
-      <a class="video-thumb" href="#" onclick="openVideoLightbox(event)" aria-label="Watch Regulate in action">
-        <img src="https://img.youtube.com/vi/DLH1zOyc41g/maxresdefault.jpg" alt="Regulate app preview" />
-        <div class="video-play-btn">
-          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="36" r="36" fill="white" fill-opacity="0.15"/>
-            <circle cx="36" cy="36" r="34" stroke="white" stroke-opacity="0.4" stroke-width="1.5"/>
-            <polygon points="29,22 54,36 29,50" fill="white"/>
-          </svg>
-        </div>
-      </a>
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="regulate-video.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
@@ -1038,30 +967,5 @@
     }, 3000);
   </script>
 
-  <!-- VIDEO LIGHTBOX -->
-  <div class="video-lightbox" id="videoLightbox" onclick="closeVideoLightbox(event)">
-    <div class="video-lightbox-inner">
-      <button class="video-lightbox-close" onclick="closeVideoLightbox()">&times;</button>
-      <iframe id="videoFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-    </div>
-  </div>
-
-  <script>
-    function openVideoLightbox(e) {
-      e.preventDefault();
-      document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/DLH1zOyc41g?autoplay=1&rel=0&modestbranding=1';
-      document.getElementById('videoLightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeVideoLightbox(e) {
-      if (e && e.target !== document.getElementById('videoLightbox') && !e.target.classList.contains('video-lightbox-close')) return;
-      document.getElementById('videoFrame').src = '';
-      document.getElementById('videoLightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeVideoLightbox({target: document.getElementById('videoLightbox')});
-    });
-  </script>
 </body>
 </html>
