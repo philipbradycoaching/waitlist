@@ -603,6 +603,26 @@
       border-radius: 20px;
       outline: none;
     }
+    .video-unmute {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s;
+    }
+    .video-unmute:hover { background: rgba(0,0,0,0.75); }
 
 
     /* ── RESPONSIVE ── */
@@ -662,9 +682,35 @@
   <!-- VIDEO -->
   <section class="video-section">
     <div class="video-wrap fade-in">
-      <video class="hero-video" autoplay muted loop playsinline>
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
         <source src="regulate-video.mp4" type="video/mp4">
       </video>
+      <button class="video-unmute" id="unmuteBtn" onclick="toggleMute()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15" id="muteX1"/>
+          <line x1="17" y1="9" x2="23" y2="15" id="muteX2"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" id="soundWave" style="display:none"/>
+        </svg>
+        <span id="unmuteBtnLabel">Tap for sound</span>
+      </button>
+      <script>
+        function toggleMute() {
+          var v = document.getElementById('heroVideo');
+          var label = document.getElementById('unmuteBtnLabel');
+          var x1 = document.getElementById('muteX1');
+          var x2 = document.getElementById('muteX2');
+          var wave = document.getElementById('soundWave');
+          v.muted = !v.muted;
+          if (v.muted) {
+            label.textContent = 'Tap for sound';
+            x1.style.display = ''; x2.style.display = ''; wave.style.display = 'none';
+          } else {
+            label.textContent = 'Mute';
+            x1.style.display = 'none'; x2.style.display = 'none'; wave.style.display = '';
+          }
+        }
+      </script>
     </div>
   </section>
 
